@@ -1,7 +1,8 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Header from './Components/Header';
 import AddProject from './Components/AddProject';
+import Landing from "./Components/Landing";
 
 
 function App() {
@@ -9,8 +10,8 @@ function App() {
    <React.Fragment>
     <Header />
       <Routes>
-        <Route path="/" element={ <AddProject />} />
-        <Route path="/add-project" element={<AddProject />} />
+        <Route path="/" element={ <Landing /> } />
+        <Route path="/add-project" element={ <AddProject /> } />
       </Routes>
    </React.Fragment>
   );
