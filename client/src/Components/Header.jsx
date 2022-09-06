@@ -14,11 +14,10 @@ const Header = () => {
     <div className="header">
       <div className="header-text">
         <h1 className="header-heading">Crowd Funding</h1>
-        <p className="header-paragraph">Get your funds now</p>
       </div>
       <div className={`header-buttons ${ toggler ? ' responsive' : ''}`}>
         <button>Connect To MetaMask</button>
-        <button>Sign Up</button>
+        <button>Add Project</button>
        
       </div>
         { toggler ? 

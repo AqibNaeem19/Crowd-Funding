@@ -1,12 +1,11 @@
 .header{
   height: 8em;
-  background-color: grey;
   padding: 0px 3em 0px 3em;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(60, 60, 129);
+  background-color: #212121;
 }
 
 .header-text{
@@ -35,14 +34,17 @@
   border-radius: 5px;
   outline: none;
   border: none;
-  box-shadow: 2px 2px 2px rgb(39, 34, 114);
+  box-shadow: 2px 2px 2px #212121;
   font-size: 1.5em;
   letter-spacing: 1px;;
   transition: all 0.4s;
 }
 
+.header-buttons button:nth-child(2){
+  background-color: #FF5252;
+}
 .header-buttons button:hover{
-  box-shadow: 5px 5px 5px rgb(39, 34, 114);
+  box-shadow: 5px 5px 5px #212121;
   transform: scale(1.05);
 }
 
@@ -69,7 +71,7 @@
     position: absolute;
     right: 0px;
     top: 8em;
-    background-color: rgb(60, 60, 129);
+    background-color: #212121;
     opacity: 0.8;
     animation: toggleAnimation 1s;
   }

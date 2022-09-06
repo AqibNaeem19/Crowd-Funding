@@ -100,7 +100,7 @@ const AddProject = () => {
                 onChange={handleChange} />
             </div>
 
-            <button type="submit">Create Project</button>
+            <button className="form-submit-button" type="submit">Create Project</button>
 
           </form>
 

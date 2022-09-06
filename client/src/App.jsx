@@ -7,8 +7,9 @@ import AddProject from './Components/AddProject';
 function App() {
   return (
    <React.Fragment>
+    <Header />
       <Routes>
-        <Route path="/" element={<Header  />} />
+        <Route path="/" element={ <AddProject />} />
         <Route path="/add-project" element={<AddProject />} />
       </Routes>
    </React.Fragment>

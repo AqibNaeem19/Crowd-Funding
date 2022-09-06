@@ -82,7 +82,7 @@ form {
   box-shadow: 0 0 0 3px #FF5252;
 }
 
-button {
+.form-submit-button {
   padding: 10px;
   margin-top: 20px;
   outline: none;
@@ -94,8 +94,8 @@ button {
   cursor: pointer;
 }
 
-button:focus,
-button:hover {
+.form-submit-button:focus,
+.form-submit-button:hover {
   background: hsl(0, 100%, 76%);
 }
 
