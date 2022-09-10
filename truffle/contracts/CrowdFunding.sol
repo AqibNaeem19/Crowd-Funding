@@ -2,21 +2,25 @@
 pragma solidity ^0.8.0;
 
 contract CrowdFunding{
-  address public owner;
-  uint public projectTax;
-  uint public projectCount;
-  uint public balances;
-  projectStat public stat;
-  projectInfo[] projects;
+  address payable public owner;
+  uint public minContributions=msg.value;
+  address[] public approved;// contributors ka address save krny k liye
+  uint public projectTax;// tax deduct krny k liye
+  uint public projectCount=0;// kitne prijects total ho chuky h
+  address public balances;// projrct account me balance 
+  projectStat public stat; // whole crowd funding projects
+  projectInfo[] projects;// project li sari info k liye ik alag se structure
 
 mapping(address => projectInfo[]) projectsOf;
 mapping(uint => donarInfo[]) backersOf;
 mapping(uint => bool) public projectExist;
+// whole picture of the projects
 struct projectStat{
 uint totalProjects;
 uint totalBacking;
 uint totalCollection;
 }
+//priject ki different states k liye
 enum projectStatus{
   open,
   approved,
@@ -24,12 +28,15 @@ enum projectStatus{
   paidout,
   refund
 }
+//donar ki info k liye structured datatype
+
 struct donarInfo{
   address owner;
   uint contribution;
   uint timestamp;
   bool refund;
 }
+//donar ki info k liye structured datatype
 
 struct projectInfo{
   uint id;
@@ -43,7 +50,7 @@ struct projectInfo{
   uint expiresAt;
   projectStatus status;
 }
-
+//to perform diff events
 event Action (
     uint256 id,
     string actionType,
@@ -54,12 +61,18 @@ event Action (
 modifier onlyOwner(){
   require(msg.sender == owner, "Owner only");
   _;
-}constructor (uint tax )
+}
+// the constructor dhould b owner check and min Contributionn check
+//uint tax, uint minimum 
+//projectTax = tax;
+//  minContributions= minimum;
+constructor () public
 {
-  owner = msg.sender;
-  projectTax = tax;
+  owner=payable(msg.sender);
+  
 }
 
+// to create the project
 function createProject(
   string memory title,
   string memory description,
@@ -81,11 +94,12 @@ function createProject(
   project.timestamp = block.timestamp;
   project.expiresAt = expiresAt;
   projects.push(project);
+  projectExist[projectCount] = true;
   projectsOf[msg.sender].push(project);
   stat.totalProjects += 1;
   emit Action(projectCount, "Project Created", msg.sender, block.timestamp);
-
-  
+  projectCount++;
+  //projectExist == true;
   return true;
 }
 
@@ -135,5 +149,39 @@ function deleteProject(uint id) public returns (bool) {
     );
     return true;
 }
+// this function is for donar to contribute 
+  function contribute () public payable returns(bool)
+  {
+    donarInfo memory donar;
+    require(donar.contribution > minContributions);
+    approved.push(msg.sender);// contributor is saved in the approved array
+    //transfer(payable(owner),msg.value);
+    if(msg.value > minContributions)
+    {
+    owner.transfer(msg.value);
+    }//send();
+    emit Action(
+                projectCount, 
+                "YOU ARE CONTRIBUTED TO THE PRIJECT"
+                ,  msg.sender
+                , block.timestamp)
+    ;
+    return true;
+  }
 
+//owner can start compain and set the. min contrubution
+  function compaign() public payable onlyOwner
+  {
+      minContributions=msg.value;
+   
+  }
+
+
+     //function send() public payable{
+
+       //     owner.transfer(msg.value);
+
+        //}    //function transfer(address payable _to, uint _amount) public onlyOwner { 
+    //    _to.transfer(_amount);
+  //}
 }
