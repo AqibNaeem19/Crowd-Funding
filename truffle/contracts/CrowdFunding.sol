@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 contract CrowdFunding{
   address payable public owner;
-  uint public minContributions=msg.value;
+  uint public minContributions;
   //address[] public approved;// contributors ka address save krny k liye
   uint public projectTax;// tax deduct krny k liye
   uint public projectCount=0;// kitne prijects total ho chuky h
@@ -43,7 +43,7 @@ struct projectInfo{
   address owner;
   string title;
   string description;
-  string imageUrl;
+  string imageUrl;   
   uint timestamp;
   uint cost;
   uint raised;
@@ -79,12 +79,15 @@ function createProject(
   string memory description,
   string memory imageUrl,
   uint cost,
+  uint minValue,
   uint expiresAt
   )public onlyOwner returns(bool) {
   require(bytes(title).length > 0,"Title can't be empty");
   require(bytes(description).length > 0,"Description can't be empty");
 
   require(bytes(imageUrl).length > 0,"Image can't be empty");
+  minContributions = minValue  ;
+
   projectInfo memory project;
   project.id = projectCount;
   project.owner = msg.sender;
@@ -109,6 +112,7 @@ function updateProject(
     string memory title,
     string memory description,
     string memory imageURL,
+    uint minValue,
     uint expiresAt
     ) public returns (bool) {
     require(msg.sender == projects[id].owner, "Unauthorized Entity");
@@ -116,7 +120,7 @@ function updateProject(
     require(bytes(title).length > 0, "Title cannot be empty");
     require(bytes(description).length > 0, "Description cannot be empty");
     require(bytes(imageURL).length > 0, "ImageURL cannot be empty");
-
+    minContributions = minValue  ;
     projects[id].title = title;
     projects[id].description = description;
     projects[id].imageUrl = imageURL;
@@ -188,11 +192,12 @@ function deleteProject(uint id) public returns (bool) {
   }
 
 //owner can start compain and set the. min contrubution
-  function compaign(uint minValue) public  onlyOwner
+  /*function compaign(uint minValue) public  onlyOwner
   {
       minContributions=minValue;
    
   }
+  */
 function getBackers(uint id) public view returns (donarInfo[] memory) {
         return backersOf[id];
     }
