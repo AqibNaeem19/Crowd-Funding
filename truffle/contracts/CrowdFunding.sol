@@ -4,10 +4,10 @@ pragma solidity ^0.8.0;
 contract CrowdFunding{
   address payable public owner;
   uint public minContributions=msg.value;
-  address[] public approved;// contributors ka address save krny k liye
+  //address[] public approved;// contributors ka address save krny k liye
   uint public projectTax;// tax deduct krny k liye
   uint public projectCount=0;// kitne prijects total ho chuky h
-  address public balances;// projrct account me balance 
+  uint public balances;// projrct account me balance 
   projectStat public stat; // whole crowd funding projects
   projectInfo[] projects;// project li sari info k liye ik alag se structure
 
@@ -31,7 +31,7 @@ enum projectStatus{
 //donar ki info k liye structured datatype
 
 struct donarInfo{
-  address owner;
+  address backer;
   uint contribution;
   uint timestamp;
   bool refund;
@@ -47,6 +47,7 @@ struct projectInfo{
   uint timestamp;
   uint cost;
   uint raised;
+  uint backer;
   uint expiresAt;
   projectStatus status;
 }
@@ -66,7 +67,7 @@ modifier onlyOwner(){
 //uint tax, uint minimum 
 //projectTax = tax;
 //  minContributions= minimum;
-constructor () public
+constructor () payable
 {
   owner=payable(msg.sender);
   
@@ -79,7 +80,7 @@ function createProject(
   string memory imageUrl,
   uint cost,
   uint expiresAt
-  )public returns(bool) {
+  )public onlyOwner returns(bool) {
   require(bytes(title).length > 0,"Title can't be empty");
   require(bytes(description).length > 0,"Description can't be empty");
 
@@ -150,32 +151,51 @@ function deleteProject(uint id) public returns (bool) {
     return true;
 }
 // this function is for donar to contribute 
-  function contribute () public payable returns(bool)
+  function contribute (uint id) public payable 
   {
     donarInfo memory donar;
-    require(donar.contribution > minContributions);
-    approved.push(msg.sender);// contributor is saved in the approved array
-    //transfer(payable(owner),msg.value);
-    if(msg.value > minContributions)
-    {
-    owner.transfer(msg.value);
-    }//send();
+    donar.contribution=msg.value;
+    require(donar.contribution > minContributions,"value is less than the min contribution");
+    require(projectExist[id],"project not found");
+    require(projects[id].status ==projectStatus.open,"Project is closed");
+
+ stat.totalBacking += 1;
+        stat.totalCollection += msg.value;
+        projects[id].raised += msg.value;
+        projects[id].backer += 1;
+    //approved.push(msg.sender);// contributor is saved in the approved array
+    //add.transfer(payable(owner),msg.value);
+    //owner.transfer(msg.value);
+   // if(msg.value > minContributions)
+    //{
+    //owner.transfer(msg.value);
+    balances=msg.value;
+    //}//send();
+    backersOf[id].push(
+            donarInfo(
+                msg.sender,
+                msg.value,
+                block.timestamp,
+                false
+            ));
     emit Action(
                 projectCount, 
                 "YOU ARE CONTRIBUTED TO THE PRIJECT"
                 ,  msg.sender
                 , block.timestamp)
     ;
-    return true;
+    
   }
 
 //owner can start compain and set the. min contrubution
-  function compaign() public payable onlyOwner
+  function compaign(uint minValue) public  onlyOwner
   {
-      minContributions=msg.value;
+      minContributions=minValue;
    
   }
-
+function getBackers(uint id) public view returns (donarInfo[] memory) {
+        return backersOf[id];
+    }
 
      //function send() public payable{
 
