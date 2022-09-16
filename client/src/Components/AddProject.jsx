@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { createProject, updateProject } from '../SimpleStorage';
-import { UnixToDate , convertDate} from '../Helpers/helper';
+import { UnixToDate } from '../Helpers/helper';
 import { ethers } from 'ethers';
 import '../styles/AddProject.css'
 
@@ -27,7 +27,7 @@ const AddProject = (props) => {
       // Extract fields from the updating project
       let editTitle = activeProject?.title;
       let editDescription = activeProject?.description;
-      let editImageURL = activeProject?.imageURL;
+      let editImageURL = activeProject?.imageUrl;
       let editCost = ethers.utils.formatEther(activeProject?.cost._hex);
       let editExpiresAt = UnixToDate(activeProject.expiresAt._hex)
 
@@ -129,7 +129,7 @@ const AddProject = (props) => {
               and convert it into
               <span> Reality </span>
             </h1> :
-            <h1>Time to <span>upgarde</span></h1>
+            <h1>You <span>live ,</span> you <span>learn ,</span> and you <span>upgrade</span></h1>
           }
         </div>
 
@@ -195,7 +195,7 @@ const AddProject = (props) => {
                 onChange={handleChange} />
             </div>
 
-            <button className="form-submit-button" type="submit">Create Project</button>
+            <button className="form-submit-button" type="submit">{ edit ? 'Update Project' : 'Create Project'}</button>
 
           </form>
 
