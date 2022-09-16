@@ -80,8 +80,8 @@ const ProjectDetails = (props) => {
   const backersList = <div className='backer-portion'>
     {projectBackers?.map((backer, index) => (
       <Backers id={index}
-      key={index}
-        owner={backer.owner}
+        key={index}
+        owner={backer.backer}
         cost={ethers.utils.formatEther(backer.contribution._hex)}
         fundedDate={convertDate(backer.timestamp._hex)}
       />
@@ -98,7 +98,7 @@ const ProjectDetails = (props) => {
     <div className="project-details">
       <div className="project-details-container">
         <div className="project-details-image">
-          <img src={project?.imageURL} alt="Project description" />
+          <img src={project?.imageUrl} alt="Project description" />
         </div>
         <h1 className="project-details-title">{project?.title}</h1>
         <div className="project-details-desc">
