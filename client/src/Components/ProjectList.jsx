@@ -20,6 +20,7 @@ const ProjectList = () => {
         const response = await loadProjects();
         if( response ) {
          setListOfProjects(response);
+         console.log('I am the projects ', response);
         }
       } catch (error) {
         console.log(error);
@@ -41,8 +42,9 @@ const ProjectList = () => {
             expiresAt={convertDate(project.expiresAt._hex)}
             cost={ethers.utils.formatEther(project.cost._hex)}
             raised={ethers.utils.formatEther(project.raised._hex)}
-            backers={ethers.utils.arrayify(project.backers._hex)[0]}
-            imageURL={project.imageURL}
+            backers={ethers.utils.arrayify(project.backer._hex)[0]}
+            imageURL={project.imageUrl}
+            status={project.status}
           />
         </div>
 
