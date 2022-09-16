@@ -1,8 +1,11 @@
 import React from 'react'
+import { projectStatus } from '../Helpers/helper';
 import { SiEthereum } from 'react-icons/si';
 import '../styles/ProjectCard.css'
 
-const ProjectCard = ({title, id, owner, expiresAt, cost, raised, backers, imageURL}) => {
+const ProjectCard = (props) => {
+  const {title, id, owner, expiresAt, cost, raised, backers, imageURL, status} = props;
+
   return (
     <div className="projectCard-container">
       <div className="image-container">
@@ -32,7 +35,7 @@ const ProjectCard = ({title, id, owner, expiresAt, cost, raised, backers, imageU
         </div>
       </div>
         <p className="project-backing">{backers} backings</p>
-        <p className="project-status"><span>Status :- </span>open</p>
+        <p className="project-status"><span>Status :- </span>{projectStatus(status)}</p>
     </div>
   )
 }
