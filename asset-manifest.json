@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Crowd-Funding/static/css/main.fa299045.chunk.css",
-    "main.js": "/Crowd-Funding/static/js/main.26a74311.chunk.js",
-    "main.js.map": "/Crowd-Funding/static/js/main.26a74311.chunk.js.map",
+    "main.js": "/Crowd-Funding/static/js/main.e7a91fde.chunk.js",
+    "main.js.map": "/Crowd-Funding/static/js/main.e7a91fde.chunk.js.map",
     "runtime-main.js": "/Crowd-Funding/static/js/runtime-main.d6b5b762.js",
     "runtime-main.js.map": "/Crowd-Funding/static/js/runtime-main.d6b5b762.js.map",
     "static/js/2.517f8c0f.chunk.js": "/Crowd-Funding/static/js/2.517f8c0f.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.d6b5b762.js",
     "static/js/2.517f8c0f.chunk.js",
     "static/css/main.fa299045.chunk.css",
-    "static/js/main.26a74311.chunk.js"
+    "static/js/main.e7a91fde.chunk.js"
   ]
 }
