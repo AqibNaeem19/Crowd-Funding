@@ -17,7 +17,28 @@ body{
   background-color: #424242;
 }
 
-#root {
+/* #root {
   width: 100vw;
   height: 100vh;
+} */
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ff5252;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ff5252;
 }
