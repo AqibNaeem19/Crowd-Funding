@@ -74,6 +74,7 @@ const ProjectDetails = (props) => {
     event.preventDefault();
     console.log('Form value is ', fundValue);
     await backProject(id, fundValue);
+    event.target.reset();
   }
 
   // Renders the list of backers funding the project
@@ -119,11 +120,13 @@ const ProjectDetails = (props) => {
 
         {/* Display control buttons */}
 
-        {project && (project?.owner).toLowerCase() == userAddress ?
+        {project && project.status == 0 && (project?.owner).toLowerCase() == userAddress &&
           <div className="details-buttons-container">
             <button className="details-update-button" onClick={() => navigate(`/edit-project/${id}`)}>Update</button>
             <button className="details-delete-button">Delete</button>
-          </div> :
+          </div>
+        }
+        {project && project.status == 0 && (project?.owner).toLowerCase() !== userAddress && 
           <button className="details-fund-button" onClick={openModal}>Fund</button>
         }
 
@@ -136,7 +139,7 @@ const ProjectDetails = (props) => {
               <div ref={modalRef} className="modal-container">
                 <h1 className="modal-title">{project?.title}</h1>
                 <form onSubmit={onFundFormSubmit}>
-                  <input type="number" step="0.001" min="0.0001" value={fundValue} placeholder="0.001 Eth" onChange={(event) => setFundValue(event.target.value)} />
+                  <input type="number" name='fund' step="0.001" min="0.0001" value={fundValue} placeholder="0.001 Eth" onChange={(event) => setFundValue(event.target.value)} />
                   <button type="submit" className="modal-confirm-button">Confirm</button>
                 </form>
               </div>
@@ -145,7 +148,7 @@ const ProjectDetails = (props) => {
         }
 
         {/* Display project backers */}
-        
+
         {projectBackers ? backersList : ''}
       </div>
     </div>

@@ -36,6 +36,7 @@
 }
 .project-details-desc{
   margin-top: 2em;
+  width: 100%;
 }
 
 .description-heading{
@@ -46,11 +47,13 @@
 
 
 .description-border{
-  padding: 1em 1em 1em 1em;
+  padding: 1em 1em 3em 1em;
   background-color: #272727;
   border-radius: 10px;
   opacity: 0.9;
+  min-width: 100%;
 }
+
 .description{
   color: white;
   font-size: 1.6em;

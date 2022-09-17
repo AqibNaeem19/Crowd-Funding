@@ -1,5 +1,7 @@
 .project-list-container{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  width: 80vw;
+  margin: 2em auto;
 }
