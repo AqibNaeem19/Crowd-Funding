@@ -75,6 +75,7 @@ const ProjectDetails = (props) => {
     console.log('Form value is ', fundValue);
     await backProject(id, fundValue);
     event.target.reset();
+    navigate('/');
   }
 
   // Renders the list of backers funding the project
