@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { connectWallet, isWallectConnected } from '../SimpleStorage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -17,11 +17,11 @@ const Header = () => {
 
   useEffect(() => {
     // To get the value instead of javascript promise object
-    async function run() { 
+    async function run() {
       const data = await isWallectConnected();
-      if( data !== '0x000000000000000000000000') {
+      if (data !== '0x000000000000000000000000') {
         setWalletConnected(true);
-        return ;
+        return;
       }
       setWalletConnected(false);
     }
@@ -38,15 +38,17 @@ const Header = () => {
       <div className="header-text">
         <h1 className="header-heading" onClick={() => navigate('/')}>Crowd Funding</h1>
       </div>
-      <div className={`header-buttons ${ toggler ? ' responsive' : ''}`}>
+      <div className={`header-buttons ${toggler ? ' responsive' : ''}`}>
         <button onClick={connectWallet}>{walledConnected ? 'Connected' : 'Connect To MetaMask'}</button>
-        <button onClick={() => navigate("/add-project")}>Add Project</button>
-       
+        {walledConnected &&
+          <button onClick={() => navigate("/add-project")}>Add Project</button>
+        }
+
       </div>
-        { toggler ? 
-            <FontAwesomeIcon icon={faXmark} className="toggler" onClick={toggleNavbar} /> :
-            <FontAwesomeIcon icon={faBars} className="toggler" onClick={toggleNavbar} />
-        }    
+      {toggler ?
+        <FontAwesomeIcon icon={faXmark} className="toggler" onClick={toggleNavbar} /> :
+        <FontAwesomeIcon icon={faBars} className="toggler" onClick={toggleNavbar} />
+      }
     </div>
   )
 }
