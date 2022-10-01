@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Crowd-Funding/static/css/main.5cb59edb.chunk.css",
-    "main.js": "/Crowd-Funding/static/js/main.a2bcd48a.chunk.js",
-    "main.js.map": "/Crowd-Funding/static/js/main.a2bcd48a.chunk.js.map",
+    "main.css": "/Crowd-Funding/static/css/main.291bbcab.chunk.css",
+    "main.js": "/Crowd-Funding/static/js/main.6d4b583c.chunk.js",
+    "main.js.map": "/Crowd-Funding/static/js/main.6d4b583c.chunk.js.map",
     "runtime-main.js": "/Crowd-Funding/static/js/runtime-main.d6b5b762.js",
     "runtime-main.js.map": "/Crowd-Funding/static/js/runtime-main.d6b5b762.js.map",
-    "static/js/2.f143a4de.chunk.js": "/Crowd-Funding/static/js/2.f143a4de.chunk.js",
-    "static/js/2.f143a4de.chunk.js.map": "/Crowd-Funding/static/js/2.f143a4de.chunk.js.map",
+    "static/js/2.a6f62ff7.chunk.js": "/Crowd-Funding/static/js/2.a6f62ff7.chunk.js",
+    "static/js/2.a6f62ff7.chunk.js.map": "/Crowd-Funding/static/js/2.a6f62ff7.chunk.js.map",
     "index.html": "/Crowd-Funding/index.html",
-    "static/css/main.5cb59edb.chunk.css.map": "/Crowd-Funding/static/css/main.5cb59edb.chunk.css.map",
-    "static/js/2.f143a4de.chunk.js.LICENSE.txt": "/Crowd-Funding/static/js/2.f143a4de.chunk.js.LICENSE.txt"
+    "static/css/main.291bbcab.chunk.css.map": "/Crowd-Funding/static/css/main.291bbcab.chunk.css.map",
+    "static/js/2.a6f62ff7.chunk.js.LICENSE.txt": "/Crowd-Funding/static/js/2.a6f62ff7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d6b5b762.js",
-    "static/js/2.f143a4de.chunk.js",
-    "static/css/main.5cb59edb.chunk.css",
-    "static/js/main.a2bcd48a.chunk.js"
+    "static/js/2.a6f62ff7.chunk.js",
+    "static/css/main.291bbcab.chunk.css",
+    "static/js/main.6d4b583c.chunk.js"
   ]
 }
