@@ -9,6 +9,7 @@ import { ethers } from 'ethers';
 import { useNavigate } from 'react-router-dom';
 import { isWallectConnected } from '../SimpleStorage';
 import '../styles/ProjectDetails.css';
+import ChartBar from './ChartBar';
 
 const ProjectDetails = (props) => {
   const [modal, setModal] = useState(false);
@@ -119,8 +120,15 @@ const ProjectDetails = (props) => {
           <p className="cost-price">{project ? ethers.utils.formatEther(project?.cost._hex) : ''} Eth</p>
         </div>
 
-        {/* Display control buttons */}
+        {/* Display Stats of project */}
+        <h2 className="project-stats-heading">Stats</h2>
+        <ChartBar totalCost={project ? ethers.utils.formatEther(project?.cost._hex) : ''} 
+          collectedCost={project ? ethers.utils.formatEther(project?.raised._hex) : ''}
+          backers={project ? ethers.utils.arrayify(project?.backer._hex)[0] : ''}
+          expires={project ? convertDate(project.expiresAt._hex) : ''}
+        />
 
+        {/* Display control buttons */}
         {project && project.status == 0 && (project?.owner).toLowerCase() == userAddress &&
           <div className="details-buttons-container">
             <button className="details-update-button" onClick={() => navigate(`/edit-project/${id}`)}>Update</button>

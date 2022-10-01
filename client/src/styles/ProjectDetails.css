@@ -85,6 +85,13 @@
   margin-left:1em;
 }
 
+.project-stats-heading{
+  color: #FF5252;
+  font-size: 2.5em;
+  font-weight: 500;
+  margin-top: 14px;
+}
+
 .details-buttons-container{
   margin-top: 1em;
   width: 30vw;
